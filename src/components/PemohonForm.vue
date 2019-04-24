@@ -4,210 +4,76 @@
         <div class="btn btn-block mb-2 text-uppercase text-white" :class="payment_status"><strong>{{ payment.status }}</strong></div>
       <div class="card mb-3 card-shadow">
         <div class="card-header text-left text-uppercase">MAKLUMAT PERIBADI</div>
-        <div class="card-body">
-          <div class="row text-left">
-            <div class="col-sm-12">
-              <div class="form-group">
-                <label for>
-                  Nama
-                  
-                </label>
-                <input
-                  type="text"
-                  :value="info.nama"
-                  class="form-control-plaintext text-uppercase"
-                >
-              </div>
-            </div>
+        <div class="card-body text-left">
+          <table class="table table-bordered">
+            <tbody>
+              <tr>
+                <th>Nama</th>
+                <td colspan="3">{{ info.nama }}</td>
+              </tr>
+              <tr>
+                <th>Jantina</th>
+                <td colspan="3">{{ info.jantina }}</td>
+              </tr>
 
-            <div class="col-sm-12 mb-3">
-              <div class="form-groups">
-                  <label>
-                    Jantina
-                  </label>
-                  <input type="text" class="form-control-plaintext" :value="info.jantina">
-                </div>
-              </div>
+              <tr>
+                <th>Tempat Negara Lahir</th>
+                <td>{{ info.tempat_lahir }}</td>
+                <th>Tarikh Lahir</th>
+                <td>{{ info.tarikh_lahir }}</td>
+              </tr>
 
-            <div class="col-sm-6 text-left">
-              <div class="form-group">
-                <label>
-                  Tempat Negara Lahir
-                </label>
-                <input type="text"
-                v-model="info.tempat_lahir"
-                class="form-control-plaintext"
-                />
-                
-              </div>
-            </div>
+              <tr>
+                <th>Warganegara</th>
+                <td>{{ info.warganegara}}</td>
+                <th>Pekerjaan </th>
+                <td>{{ info.pekerjaan }}</td>
+              </tr>
 
-            <div class="col-sm-6 text-left">
-              <div class="form-group">
-                <label for>Tarikh Lahir</label>
-                <input type="text" class="form-control-plaintext" 
-                :value="info.tarikh_lahir"/>
-              </div>
-            </div>
+              <tr>
+                <th>Alamat</th>
+                <td colspan="3">
+                  <div>{{ info.alamat_1 }} </div>
+                  <div>{{ info.alamat_2 }}</div>
+                  <div>{{ info.alamat_3 }}</div>
+                </td>
+              </tr>
+              <tr>
+                <th>Taraf Perkahwinan</th>
+                <td>{{ info.taraf_perkahwinan}}</td>
+                <td></td>
+                <td></td>
+              </tr>
 
-            <div class="col-sm-6 text-left">
-              <div class="form-group">
-                <label for>
-                  Warganegara
-                  
-                </label>
-                <input type="text" 
-                class="form-control-plaintext text-uppercase"
-                :value="info.warganegara" />
-              </div>
-            </div>
+              <tr>
+                <th>Email</th>
+                <td>{{ info.email }}</td>
+                <th>No Telefon </th>
+                <td>+{{ info.kod_negara + info.no_telefon }}</td>
+              </tr>
 
-            <div class="col-sm-6 text-left">
-              <div class="form-group">
-                <label>
-                  Pekerjaan
-                  
-                </label>
-                <input
-                  type="text"
-                  :value="info.pekerjaan"
-                  class="form-control-plaintext text-uppercase"
-                >
-              </div>
-            </div>
+              <tr>
+                <th colspan="4">Maklumat Dokumen Perjalanan</th>
+              </tr>
 
-            <div class="col-sm-12 text-left">
-              <div class="form-group mb-1">
-                <label for>
-                  Alamat
-                  
-                </label>
-                <input
-                  type="text"
-                  name="alamat_1"
-                  :value="info.alamat_1"
-                  class="form-control-plaintext text-uppercase"
-                >
-              </div>
-            </div>
+              <tr>
+                <th>Jenis Dokumen</th>
+                <td>{{ info.jenis_dokumen_perjalanan }}</td>
+                <th>Nombor</th>
+                <td>{{ info.nombor}}</td>
+              </tr>
 
-            <div class="col-sm-12 text-left">
-              <div class="form-group mb-1">
-                <input
-                  type="text"
-                  v-model="info.alamat_2"
-                  class="form-control-plaintext text-uppercase"
-                >
-              </div>
-            </div>
-            <div class="col-sm-12 text-left">
-              <div class="form-group">
-                <input
-                  type="text"
-                  name="alamat_3"
-                  v-model="info.alamat_3"
-                  class="form-control-plaintext text-uppercase"
-                  autocomplete="off"
-                >
-              </div>
-            </div>
-
-            <div class="col-sm-12 mb-4">
-              <div class="form-groups">
-                  <label for>
-                    Taraf Pekahwinan
-                  </label>
-                  <input type="text" 
-                class="form-control-plaintext text-uppercase"
-                :value="info.taraf_perkahwinan" />
-                </div>
-            </div>
-
-            <div class="col-sm-12 col-md-6">
-              <div class="form-group">
-                <label for>
-                  Email
-                  
-                </label>
-                <input type="email" name="email" :value="info.email" 
-                class="form-control-plaintext" >
-              </div>
-            </div>
-
-            <div class="col-sm-12 col-md-6">
-              <div class="form-group">
-                <label for>
-                  No Telefon
-                </label>
-                 <input type="text" 
-                class="form-control-plaintext text-uppercase"
-                :value="'+' + info.kod_negara + info.no_telefon" />
-              </div>
-            </div>
-          </div>
+              <tr>
+                <th>Tempat / Negara Dikeluarkan</th>
+                <td>{{ info.negara_dikeluarkan }}</td>
+                <th>Sah Sehinggan </th>
+                <td>{{ info.sah_sehingga}}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
         </div>
       
-      <div class="card mb-3 card-shadow">
-        <div class="card-header text-left">
-          <div>Maklumat Pasport perjalanan / dokumen perjalanan</div>
-        </div>
-
-        <div class="card-body">
-          <div class="row text-left">
-            <div class="col-sm-12 col-lg-6 text-left">
-              <div class="form-group">
-                <label for>
-                  Jenis Dokumen Perjalanan
-                  
-                </label>
-                <input type="text" 
-                class="form-control-plaintext text-uppercase"
-                :value="info.jenis_dokumen_perjalanan" />
-              </div>
-            </div>
-
-            <div class="col-sm-12 col-lg-6 text-left">
-              <div class="form-group">
-                <label for>
-                  Nombor
-                  
-                </label>
-                <input
-                  type="text"
-                  name="nombor"
-                  v-model="info.nombor"
-                  required
-                  class="form-control-plaintext text-uppercase"
-                >
-              </div>
-            </div>
-
-            <div class="col-sm-12 col-lg-6 text-left">
-              <div class="form-group">
-                <label for>
-                  Tempat / Negara Dikeluarkan
-                  
-                </label>
-                <input type="text" 
-                class="form-control-plaintext text-uppercase"
-                :value="info.negara_dikeluarkan" />
-              </div>
-            </div>
-
-            <div class="col-sm-12 col-lg-6 text-left">
-              <div class="form-group">
-                <label for>Sah Sehingga</label>
-                <input type="text" 
-                class="form-control-plaintext text-uppercase"
-                :value="info.sah_sehingga" />
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-      </div>
     </div>
 </template>
 

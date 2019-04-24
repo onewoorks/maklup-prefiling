@@ -21,7 +21,7 @@
   </tbody>
 </table>
       </div>
-      <div class="col-md-7">
+      <div class="col">
         <PemohonForm :info="info" :payment="payment" :recheck="recheck" />
       </div>
     </div>
