@@ -1,15 +1,18 @@
 <template>
     <div>
         <input type="text" class="d-none" v-model="recheck" />
-        <div class="btn btn-block mb-2 text-uppercase text-white" :class="payment_status"><strong>{{ payment.status }}</strong></div>
+        <div class="btn btn-block mb-2 text-uppercase text-white" 
+        :class="payment_status"><strong>{{ payment.status }}</strong></div>
+        <div class="btn btn-block mb-2 mb-2 text-uppercase text-white" 
+        :class="payment_status"><strong>{{ appointment }}</strong></div>
       <div class="card mb-3 card-shadow">
         <div class="card-header text-left text-uppercase">MAKLUMAT PERIBADI</div>
         <div class="card-body text-left">
-          <table class="table table-bordered">
+          <table class="table">
             <tbody>
               <tr>
                 <th>Nama</th>
-                <td colspan="3">{{ info.nama }}</td>
+                <td colspan="3" class='text-uppercase'>{{ info.nama }}</td>
               </tr>
               <tr>
                 <th>Jantina</th>
@@ -32,7 +35,7 @@
 
               <tr>
                 <th>Alamat</th>
-                <td colspan="3">
+                <td colspan="3" class='text-uppercase'>
                   <div>{{ info.alamat_1 }} </div>
                   <div>{{ info.alamat_2 }}</div>
                   <div>{{ info.alamat_3 }}</div>
@@ -60,13 +63,13 @@
                 <th>Jenis Dokumen</th>
                 <td>{{ info.jenis_dokumen_perjalanan }}</td>
                 <th>Nombor</th>
-                <td>{{ info.nombor}}</td>
+                <td class='text-uppercase'>{{ info.nombor}}</td>
               </tr>
 
               <tr>
                 <th>Tempat / Negara Dikeluarkan</th>
                 <td>{{ info.negara_dikeluarkan }}</td>
-                <th>Sah Sehinggan </th>
+                <th>Sah Sehingga </th>
                 <td>{{ info.sah_sehingga}}</td>
               </tr>
             </tbody>
@@ -81,18 +84,19 @@
 export default {
     name: "pemohon_form",
     props: {
-        info: {},
-        payment: {},
+        info: Object,
+        payment: Object,
+        appointment: String,
         recheck: String
     },
     data: function(){
         return {
             checked: "init",
-            payment_status:  'btn-primary',
+            payment_status:  'btn-secondary'
         }
     },
     mounted: function(){
-        console.log("payment_status")
+        console.log(this.payment_status)
     },
     watch: {
         recheck: function(){

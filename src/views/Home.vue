@@ -8,13 +8,18 @@
       <td class="align-middle">
         <form @submit.prevent="checkbarcode">
           <div class="form-group">
-            <input ref="barcode_input" 
-            type="text" class="form-control text-uppercase text-center" 
+            <div class="input-group">
+              <input ref="barcode_input" 
+          type="text" class="form-control text-uppercase text-center" 
             v-model="pemohon_barcode"/>
+              
+              <div class="input-group-append">
+              <button type="submit" class="btn btn-primary"><i class="fas fa-angle-right"></i></button>
+            </div>
           </div>
-          <button type="submit" class="btn btn-block btn-primary d-none">
-            check
-          </button>
+          </div>
+
+            
           </form>
       </td>
     </tr>
@@ -22,7 +27,7 @@
 </table>
       </div>
       <div class="col">
-        <PemohonForm :info="info" :payment="payment" :recheck="recheck" />
+        <PemohonForm :info="info" :payment="payment" :recheck="recheck" :appointment="appointment" />
       </div>
     </div>
   </div>
@@ -52,26 +57,29 @@ export default {
   data: function() {
     return {
       info: {},
-      payment: {},
+      payment: {
+        status: "STATUS PEMBAYARAN"
+      },
       recheck: "false",
       pemohon_barcode: "",
+      appointment: "TARIKH TEMUJANJI"
     }
   },
   mounted: function() {
     this.$refs.barcode_input.focus()
-    Axios.get(API.baseurl +"register/info?regid=860636397&tempid=161034466" 
+    
+  },
+  methods: {
+    checkbarcode: function(){
+      Axios.get(API.baseurl +"register/info-temp-id?tempid=" + this.pemohon_barcode 
     ).then(response => {
       let resp = response.data.response
       this.info = resp.data_pemohon
       this.payment = resp.payment
+      this.appointment = resp.appointment.slot + " (" + resp.appointment.session +')'
       this.recheck = "true"
-      console.log(resp)
-    })
-  },
-  methods: {
-    checkbarcode: function(){
-      console.log(this.pemohon_barcode);
       this.pemohon_barcode = ""
+    })
     }
   }
 };
