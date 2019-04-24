@@ -222,7 +222,7 @@ export default {
     data: function(){
         return {
             checked: "init",
-            payment_status:  'btn-primary'
+            payment_status:  'btn-primary',
         }
     },
     mounted: function(){

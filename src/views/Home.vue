@@ -2,8 +2,12 @@
   <div>
     <div class="row">
       <div class="col-md-5 text-left">
+        <table style="height: 100%; width:100%">
+  <tbody>
+    <tr>
+      <td class="align-middle">
         <form @submit.prevent="checkbarcode">
-          <div class="forn-group">
+          <div class="form-group">
             <input ref="barcode_input" 
             type="text" class="form-control text-uppercase text-center" 
             v-model="pemohon_barcode"/>
@@ -12,6 +16,10 @@
             check
           </button>
           </form>
+      </td>
+    </tr>
+  </tbody>
+</table>
       </div>
       <div class="col-md-7">
         <PemohonForm :info="info" :payment="payment" :recheck="recheck" />
@@ -19,6 +27,13 @@
     </div>
   </div>
 </template>
+
+<style>
+.barcode-form {
+  margin: 0 auto;
+}
+</style>
+
 
 <script>
 // @ is an alias to /src
