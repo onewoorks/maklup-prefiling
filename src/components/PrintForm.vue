@@ -6,8 +6,8 @@
           <div class="row text-center formName mb-3">
             <div class="col-3"></div>
             <div class="col-9 p-3" style="border:1px solid #000">
-              <div>JABATAN IMIGRESEN MALAYSIA</div>
-              <div>BORANG PERMOHONAN VISA</div>
+              <div><strong>JABATAN IMIGRESEN MALAYSIA</strong></div>
+              <div><strong>BORANG PERMOHONAN VISA</strong></div>
               <div>
                 <i>VISA APPLICATION FORM</i>
               </div>
@@ -59,8 +59,7 @@
 
               <div class="row pl-3">
                 <div class="col-12 dataBox">
-                  <div>.</div>
-                  <div>.</div>
+                  <div style='line-height:36px'>{{ info.nama }} &nbsp;</div>
                 </div>
               </div>
             </div>
@@ -81,7 +80,11 @@
                 <i>Male</i>
               </div>
             </div>
-            <div class="col-1 dataBox"></div>
+            <div class="col-1 dataBox cross-option">
+              <div v-if="info.jantina=='LELAKI'">
+                <i class="fa fa-times" aria-hidden="true"></i>
+              </div>
+            </div>
 
             <div class="col-2">
               <div>Perempuan</div>
@@ -90,7 +93,11 @@
               </div>
             </div>
 
-            <div class="col-1 dataBox"></div>
+            <div class="col-1 dataBox cross-option">
+              <div v-if="info.jantina=='PEREMPUAN'">
+                <i class="fas fa-times fa-3x"></i>
+              </div>
+            </div>
           </div>
 
           <div class="row">
@@ -101,7 +108,9 @@
               </div>
             </div>
 
-            <div class="col-3 dataBox"></div>
+            <div class="col-3 dataBox">
+              {{ info.tempat_lahir }}
+            </div>
           </div>
 
           <div class="row">
@@ -111,14 +120,16 @@
                 <i>Date of Birth</i>
               </div>
             </div>
-            <div class="col-3 dataBox"></div>
+            <div class="col-3 dataBox">
+              {{ info.tarikh_lahir }}
+            </div>
             <div class="col-3">
               <div>Warganegara</div>
               <div>
                 <i>Nationality</i>
               </div>
             </div>
-            <div class="col-3 dataBox"></div>
+            <div class="col-3 dataBox">{{ info.warganegara }}</div>
           </div>
 
           <div class="row">
@@ -128,7 +139,7 @@
                 <i>Occupation</i>
               </div>
             </div>
-            <div class="col-3 dataBox"></div>
+            <div class="col-3 dataBox">{{ info.pekerjaan}}</div>
           </div>
 
           <div class="row">
@@ -138,7 +149,11 @@
                 <i>Address</i>
               </div>
             </div>
-            <div class="col-9 dataBox"></div>
+            <div class="col-9 dataBox">
+              <div>{{ info.alamat_1 }}</div>
+              <div>{{ info.alamat_2 }}</div>
+              <div>{{ info.alamat_3 }}</div>
+            </div>
           </div>
 
           <div class="row">
@@ -155,7 +170,11 @@
               </div>
             </div>
 
-            <div class="col-1 dataBox"></div>
+            <div class="col-1 dataBox cross-option">
+              <div v-if="info.taraf_perkahwinan=='BELUM BERKAHWIN'">
+                <i class="fa fa-times" aria-hidden="true"></i>
+              </div>
+            </div>
 
             <div class="col-2">
               <div>Berkahwin</div>
@@ -163,7 +182,11 @@
                 <i>Married</i>
               </div>
             </div>
-            <div class="col-1 dataBox"></div>
+            <div class="col-1 dataBox cross-option">
+              <div v-if="info.taraf_perkahwinan == 'BERKAHWIN'">
+                <i class="fa fa-times" aria-hidden="true"></i>
+              </div>
+            </div>
           </div>
 
           <div class="row header">
@@ -182,7 +205,7 @@
                 <i>Type Of Travel Document</i>
               </div>
             </div>
-            <div class="col-3 dataBox"></div>
+            <div class="col-3 dataBox">{{ info.jenis_dokumen_perjalanan }}</div>
 
             <div class="col-3">
               <div>Nombor</div>
@@ -190,7 +213,7 @@
                 <i>Number</i>
               </div>
             </div>
-            <div class="col-3 dataBox"></div>
+            <div class="col-3 dataBox">{{ info.number }}</div>
           </div>
 
           <div class="row">
@@ -200,10 +223,17 @@
                 <i>Place / Country Of Issue</i>
               </div>
             </div>
-            <div class="col-3 dataBox"></div>
+            <div class="col-3 dataBox">
+              <div class="align-self-center">
+{{ info.negara_dikeluarkan }}
+              </div>
+              </div>
 
-            <div class="col-2">
+            <div class="col-3">
               <div>**Sah Sehingga</div>
+            </div>
+            <div class="col-3 dataBox">
+              {{ info.sah_sehingga }}
             </div>
           </div>
 
@@ -377,7 +407,13 @@
   font-size: 1rem;
 }
 
+.formPrint .cross-option {
+  text-align: center;
+  font-size: 1rem
+}
+
 .formPrint .header {
+  font-weight: bold;
   background-color: #dedede;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -391,13 +427,27 @@
 }
 .formPrint .dataBox {
   border: 1px solid #000;
+  padding:4px;
+  text-transform: uppercase;
+}
+
+@media print {
+  .formPrint .header {
+    background-color:  #dedede;
+  }
+  .formPrint .row {
+  padding: 5px 0;
+}
 }
 </style>
 
 
 <script>
 export default {
-  name: "print_form"
+  name: "print_form",
+  props: {
+    info: Object
+  }
 };
 </script>
 
