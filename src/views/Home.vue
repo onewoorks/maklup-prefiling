@@ -26,8 +26,9 @@
   </tbody>
 </table>
       </div>
-      <div class="col">
-        <PemohonForm :info="info" :payment="payment" :recheck="recheck" :appointment="appointment" />
+      <div class="col py-4">
+        <PemohonForm class='d-none' :info="info" :payment="payment" :recheck="recheck" :appointment="appointment" />
+        <PrintForm />
       </div>
     </div>
   </div>
@@ -47,12 +48,14 @@ import PemohonForm from "@/components/PemohonForm";
 import Axios from 'axios';
 import { API } from '@/Config';
 import { maxHeaderSize } from 'http';
+import PrintForm from '@/components/PrintForm'
 
 export default {
   name: "home",
   components: {
     HelloWorld,
-    PemohonForm
+    PemohonForm,
+    PrintForm
   },
   data: function() {
     return {
