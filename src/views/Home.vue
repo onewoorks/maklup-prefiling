@@ -105,6 +105,7 @@ export default {
         API.baseurl + "register/info-temp-id?tempid=" + this.pemohon_barcode
       ).then(response => {
         let resp = response.data.response;
+        console.log(resp)
         this.info = resp.data_pemohon;
         this.payment = resp.payment;
         this.appointment =

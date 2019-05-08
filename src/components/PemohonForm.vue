@@ -72,6 +72,24 @@
                 <th>Sah Sehingga </th>
                 <td>{{ info.sah_sehingga}}</td>
               </tr>
+
+              <tr>
+                <th colspan="4">Maklumat Tiket Perjalanan Pulang</th>
+              </tr>
+
+              <tr>
+                <th>Jenis Pengangkutan</th>
+                <td>{{ (info.tiket_pulang) ? info.tiket_pulang.jenis_pengangkutan : ''}}</td>
+                <th>No Tiket </th>
+                <td>{{ (info.tiket_pulang ) ? info.tiket_pulang.no_tiket : ''}}</td>
+              </tr>
+              <tr>
+                <th>Tarikh / Masa</th>
+                <td>{{ (info.tiket_pulang) ? info.tiket_pulang.tarikh : '' }} / {{ (info.tiket_pulang) ? info.tiket_pulang.masa : ''}}</td>
+                <th>Destinasi</th>
+                <td>{{ (info.tiket_pulang) ? info.tiket_pulang.destinasi : ''}}</td>
+              </tr>
+
             </tbody>
           </table>
         </div>
@@ -79,6 +97,11 @@
       
     </div>
 </template>
+
+<style>
+table td { text-transform: uppercase}
+</style>
+
 
 <script>
 export default {
@@ -92,11 +115,11 @@ export default {
     data: function(){
         return {
             checked: "init",
-            payment_status:  'btn-secondary'
+            payment_status:  'btn-secondary',
         }
     },
     mounted: function(){
-        console.log(this.payment_status)
+        // console.log(this.payment_status)
     },
     watch: {
         recheck: function(){
@@ -107,7 +130,7 @@ export default {
                 case 'paid':
                 this.payment_status = "btn-success"
                 break;
-                case '':
+                default:
                 this.payment_status = "btn-danger"
                 break;
             }
