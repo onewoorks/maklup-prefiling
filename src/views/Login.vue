@@ -57,7 +57,7 @@ export default {
       let body = {
         username: this.input.username,
         password: this.input.password,
-        module: 'preflight'
+        module: 'prefiling'
       };
       Axios.post(`${API.baseurl}users/check-user`, body).then(
         response => {
